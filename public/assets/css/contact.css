@@ -1,0 +1,574 @@
+/* Modern Contact Page Styles */
+
+/* Root Variables */
+:root {
+  --primary-color: #4C808A;
+  --secondary-color: #3B4167;
+  --accent-color: #2ECC71;
+  --text-dark: #2C3E50;
+  --text-light: #7F8C8D;
+  --bg-light: #F8F9FA;
+  --white: #FFFFFF;
+  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.12);
+  --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero Section */
+.contact-hero {
+  background: /*linear-gradient(135deg, rgba(76, 128, 138, 0.8) 0%, rgba(59, 65, 103, 0.8) 100%),*/ url('../img/bg/63.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--white);
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 80px 0;
+  background: var(--bg-light);
+}
+
+.contact-wrapper {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-heavy);
+  overflow: hidden;
+  margin-top: -60px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Contact Form Card */
+.contact-form-card {
+  padding: 3rem;
+  height: 100%;
+}
+
+.form-header {
+  margin-bottom: 2rem;
+}
+
+.form-header h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.form-header p {
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* Modern Form Styles */
+.modern-form .form-floating>.form-control,
+.modern-form .form-floating>.form-select {
+  border: 2px solid #E9ECEF;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 1rem 0.75rem;
+  transition: var(--transition);
+  background: var(--white);
+}
+
+.modern-form .form-floating>.form-control:hover,
+.modern-form .form-floating>.form-select:hover {
+  border-color: #4D818D;
+}
+
+.modern-form .form-floating>.form-control:focus,
+.modern-form .form-floating>.form-select:focus {
+  border-color: #4C808A !important;
+  box-shadow: 0 0 0 0.2rem rgba(76, 128, 138, 0.15) !important;
+  outline: none !important;
+}
+
+.modern-form .form-floating>label {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.modern-form .form-floating>.form-control:focus~label,
+.modern-form .form-floating>.form-control:not(:placeholder-shown)~label,
+.modern-form .form-floating>.form-select:focus~label,
+.modern-form .form-floating>.form-select:not([value=""])~label {
+  color: #4C808A !important;
+}
+
+/* Regular form select (non-floating) */
+.modern-form .form-select {
+  border: 2px solid #E9ECEF;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 1rem 0.75rem;
+  transition: var(--transition);
+  background: var(--white);
+  height: auto;
+}
+
+.modern-form .form-select:hover {
+  border-color: #4D818D;
+}
+
+.modern-form .form-select:focus {
+  border-color: #4C808A !important;
+  box-shadow: 0 0 0 0.2rem rgba(76, 128, 138, 0.15) !important;
+  outline: none !important;
+}
+
+/* Dropdown options hover effect - comprehensive override */
+.modern-form .form-select option:hover,
+.form-select option:hover,
+select option:hover,
+#subject option:hover {
+  background-color: #4D818D !important;
+  color: white !important;
+}
+
+/* Override browser default option styles */
+.modern-form .form-select option,
+.form-select option,
+select option,
+#subject option {
+  background-color: white !important;
+  color: #333 !important;
+}
+
+.modern-form .form-select option:checked,
+.form-select option:checked,
+select option:checked,
+#subject option:checked {
+  background-color: #4C808A !important;
+  color: white !important;
+}
+
+/* Additional option styling for different browsers */
+.modern-form .form-select option:focus,
+.form-select option:focus,
+select option:focus,
+#subject option:focus {
+  background-color: #4D818D !important;
+  color: white !important;
+  outline: none !important;
+}
+
+/* Comprehensive focus overrides for all form elements */
+.form-control:focus,
+.form-select:focus,
+.modern-form .form-control:focus,
+.modern-form .form-select:focus,
+.modern-form .form-floating>.form-control:focus,
+.modern-form .form-floating>.form-select:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #4C808A !important;
+  box-shadow: 0 0 0 0.2rem rgba(76, 128, 138, 0.25) !important;
+  outline: none !important;
+}
+
+/* Override Bootstrap's focus-visible styles */
+.form-control:focus-visible,
+.form-select:focus-visible,
+.modern-form .form-control:focus-visible,
+.modern-form .form-select:focus-visible {
+  border-color: #4C808A !important;
+  box-shadow: 0 0 0 0.2rem rgba(76, 128, 138, 0.25) !important;
+  outline: none !important;
+}
+
+/* Modern Button */
+.btn-modern-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  border-radius: 8px;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-modern-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  color: var(--white);
+}
+
+.btn-modern-primary:active {
+  transform: translateY(0);
+}
+
+/* Contact Info Card */
+.contact-info-card {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  padding: 3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-header {
+  margin-bottom: 2rem;
+}
+
+.info-header h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.info-header p {
+  opacity: 0.9;
+  margin: 0;
+}
+
+.contact-methods {
+  flex: 1;
+}
+
+.contact-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.method-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.method-icon i {
+  font-size: 1.2rem;
+  color: var(--white);
+}
+
+.method-content h6 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.method-content p {
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.method-content a {
+  color: var(--white);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.method-content a:hover {
+  opacity: 0.8;
+}
+
+/* Social Links */
+.social-links {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-links h6 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.social-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  color: var(--white);
+}
+
+/* Features Section */
+.features-section {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 0;
+}
+
+.feature-card {
+  background: var(--white);
+  border: 1px solid #E9ECEF;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
+  transition: var(--transition);
+  height: 100%;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--primary-color);
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
+}
+
+.feature-icon i {
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+.feature-card h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .contact-wrapper .row {
+    flex-direction: column-reverse;
+  }
+
+  .contact-form-card,
+  .contact-info-card {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-hero {
+    padding: 100px 0 60px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-section {
+    padding: 60px 0;
+  }
+
+  .contact-wrapper {
+    margin-top: -40px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-hero {
+    padding: 80px 0 50px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .contact-form-card,
+  .contact-info-card {
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+}
+
+/* Final override styles - highest specificity */
+.contact-section .form-control:focus,
+.contact-section .form-select:focus,
+.contact-section input:focus,
+.contact-section select:focus,
+.contact-section textarea:focus,
+#subject:focus,
+#fname:focus,
+#email:focus,
+#phone:focus,
+#message:focus {
+  border-color: #4C808A !important;
+  box-shadow: 0 0 0 0.25rem rgba(76, 128, 138, 0.25) !important;
+  outline: none !important;
+}
+
+/* Remove any Bootstrap focus ring */
+.contact-section *:focus {
+  --bs-focus-ring-color: rgba(76, 128, 138, 0.25) !important;
+}
+
+/* Force dropdown option colors - maximum specificity */
+.contact-section select option:hover,
+.contact-section #subject option:hover,
+body .contact-section select option:hover {
+  background-color: #4D818D !important;
+  background: #4D818D !important;
+  color: white !important;
+}
+
+.contact-section select option:focus,
+.contact-section #subject option:focus,
+body .contact-section select option:focus {
+  background-color: #4D818D !important;
+  background: #4D818D !important;
+  color: white !important;
+  outline: none !important;
+}
+
+/* Override any system/browser default option highlighting */
+.contact-section select option:active,
+.contact-section #subject option:active {
+  background-color: #4D818D !important;
+  background: #4D818D !important;
+  color: white !important;
+}

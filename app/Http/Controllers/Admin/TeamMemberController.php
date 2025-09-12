@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\TeamMember;
+use Illuminate\Http\Request;
+
+class TeamMemberController extends Controller
+{
+    public function index()
+    {
+        $teamMembers = TeamMember::orderBy('sort_order')->paginate(15);
+        return view('admin.team-members.index', compact('teamMembers'));
+    }
+
+    public function create()
+    {
+        return view('admin.team-members.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:team_members',
+            'position' => 'required|string|max:255',
+            'bio' => 'nullable|string',
+            'experience_years' => 'nullable|integer|min:0',
+            'sort_order' => 'nullable|integer|min:0',
+            'is_active' => 'boolean',
+        ]);
+
+        $validated['is_active'] = $request->has('is_active');
+
+        TeamMember::create($validated);
+
+        return redirect()->route('admin.team-members.index')
+            ->with('success', 'Team member created successfully.');
+    }
+
+    public function show(TeamMember $teamMember)
+    {
+        return view('admin.team-members.show', compact('teamMember'));
+    }
+
+    public function edit(TeamMember $teamMember)
+    {
+        return view('admin.team-members.edit', compact('teamMember'));
+    }
+
+    public function update(Request $request, TeamMember $teamMember)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:team_members,email,' . $teamMember->id,
+            'position' => 'required|string|max:255',
+            'bio' => 'nullable|string',
+            'experience_years' => 'nullable|integer|min:0',
+            'sort_order' => 'nullable|integer|min:0',
+            'is_active' => 'boolean',
+        ]);
+
+        $validated['is_active'] = $request->has('is_active');
+
+        $teamMember->update($validated);
+
+        return redirect()->route('admin.team-members.index')
+            ->with('success', 'Team member updated successfully.');
+    }
+
+    public function destroy(TeamMember $teamMember)
+    {
+        $teamMember->delete();
+        return redirect()->route('admin.team-members.index')
+            ->with('success', 'Team member deleted successfully.');
+    }
+}

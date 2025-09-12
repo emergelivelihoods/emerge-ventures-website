@@ -1,0 +1,26 @@
+
+  /* White content box with image-based border */
+  .ms-content-box {
+    background-color: #fff;
+    /* padding: 2rem; */
+    max-width: 1100px;
+    width: 90%;
+
+    /* Image Border */
+    border-width: 15px;
+    border-style: solid;
+    border-image-source: url('../img/bg/63.jpg'); /* This is your border image */
+    border-image-slice: 30; /* Adjust based on your image size */
+    border-image-repeat: round;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 576px) {
+    .ms-content-box {
+      /* padding: 1.5rem; */
+      border-width: 20px;
+      border-image-slice: 20;
+    }
+  }

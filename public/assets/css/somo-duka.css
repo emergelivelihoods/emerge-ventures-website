@@ -1,0 +1,457 @@
+.somo-duka-section {
+  position: relative;
+  padding: 60px 0;
+  background-image: url('../img/bg/63.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: clamp(24px, 4vw, 36px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120vh;
+  z-index: 3;
+  overflow: hidden;
+  text-align: center;
+}
+
+.somo-duka-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(77, 78, 117, 0.5);
+  z-index: -1;
+}
+
+.somo-duka-button {
+  display: inline-block;
+  padding: clamp(15px, 3vw, 20px) clamp(30px, 5vw, 40px);
+  color: #3B4167;
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 50px;
+  border: 2px solid #4a8b88;
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+  position: relative;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.somo-duka-button:hover {
+  background-color: #3e9172;
+  color: #fff;
+}
+
+.product-image {
+  position: absolute;
+  width: clamp(120px, 15vw, 200px);
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  animation: circleRotate 20s linear infinite;
+  z-index: 5;
+}
+
+@keyframes circleRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(clamp(280px, 35vw, 450px)) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(clamp(280px, 35vw, 450px)) rotate(-360deg);
+  }
+}
+
+.product-1 {
+  animation-delay: 0s;
+}
+
+.product-2 {
+  animation-delay: -1.67s;
+}
+
+.product-3 {
+  animation-delay: -3.33s;
+}
+
+.product-4 {
+  animation-delay: -5s;
+}
+
+.product-5 {
+  animation-delay: -6.67s;
+}
+
+.product-6 {
+  animation-delay: -8.33s;
+}
+
+.product-7 {
+  animation-delay: -10s;
+}
+
+.product-8 {
+  animation-delay: -11.67s;
+}
+
+.product-9 {
+  animation-delay: -13.33s;
+}
+
+.product-10 {
+  animation-delay: -15s;
+}
+
+.product-11 {
+  animation-delay: -16.67s;
+}
+
+.product-12 {
+  animation-delay: -18.33s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .somo-duka-section {
+    min-height: 60vh;
+    padding: 40px 0;
+  }
+
+  .product-image {
+    width: clamp(80px, 12vw, 120px);
+  }
+
+  @keyframes circleRotate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(clamp(200px, 28vw, 320px)) rotate(0deg);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) translateX(clamp(200px, 28vw, 320px)) rotate(-360deg);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .somo-duka-section {
+    min-height: 50vh;
+    padding: 30px 0;
+  }
+
+  .product-image {
+    width: clamp(60px, 10vw, 100px);
+  }
+
+  @keyframes circleRotate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(clamp(160px, 22vw, 220px)) rotate(0deg);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) translateX(clamp(160px, 22vw, 220px)) rotate(-360deg);
+    }
+  }
+}
+
+/* Product zoom functionality */
+.product-image {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.product-image:hover {
+  filter: brightness(1.1);
+  transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(var(--radius)) rotate(calc(-1 * var(--rotation))) scale(1.1);
+}
+
+/* Modal styles for zoomed product view - Override Bootstrap completely */
+div#productModal.product-modal {
+  display: none !important;
+  position: fixed !important;
+  z-index: 99999 !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  animation: fadeIn 0.3s ease !important;
+  /* Bootstrap reset */
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+div#productModal.product-modal.active {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  /* Bootstrap reset */
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+div#productModal.product-modal .modal-content {
+  /* Complete Bootstrap reset */
+  all: unset !important;
+  /* Our custom styles */
+  position: relative !important;
+  max-width: 900px !important;
+  width: 90% !important;
+  max-height: 90% !important;
+  background: white !important;
+  border-radius: 15px !important;
+  padding: 0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  animation: zoomIn 0.3s ease !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0 !important;
+  align-items: stretch !important;
+  border: none !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+}
+
+div#productModal.product-modal .modal-image-container {
+  /* Bootstrap reset */
+  all: unset !important;
+  /* Our styles */
+  flex: 0 0 350px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: #4D4E75 !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+div#productModal.product-modal .modal-image {
+  /* Bootstrap reset */
+  all: unset !important;
+  /* Our styles */
+  width: 100% !important;
+  height: auto !important;
+  max-width: 310px !important;
+  max-height: 310px !important;
+  object-fit: contain !important;
+  border-radius: 10px !important;
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important; */
+  display: block !important;
+}
+
+div#productModal.product-modal .modal-info-container {
+  /* Bootstrap reset */
+  all: unset !important;
+  /* Our styles */
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: 30px !important;
+  min-height: 350px !important;
+  box-sizing: border-box !important;
+}
+
+div#productModal.product-modal .modal-info {
+  /* Bootstrap reset */
+  all: unset !important;
+  /* Our styles */
+  text-align: left !important;
+  color: #333 !important;
+  margin-bottom: auto !important;
+  flex-grow: 1 !important;
+  display: block !important;
+}
+
+div#productModal.product-modal .modal-info h3 {
+  /* Bootstrap reset */
+  all: unset !important;
+  /* Our styles */
+  margin: 0 0 20px 0 !important;
+  font-size: 24px !important;
+  color: #4D4E75 !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  display: block !important;
+  font-family: inherit !important;
+}
+
+div#productModal.product-modal .modal-info p {
+  /* Bootstrap reset */
+  all: unset !important;
+  /* Our styles */
+  margin: 0 !important;
+  font-size: 14px !important;
+  color: #666 !important;
+  line-height: 1.6 !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  display: block !important;
+  font-family: inherit !important;
+}
+
+div#productModal.product-modal .close-modal {
+  position: absolute !important;
+  top: 15px !important;
+  right: 20px !important;
+  font-size: 24px !important;
+  font-weight: bold !important;
+  color: #999 !important;
+  cursor: pointer !important;
+  transition: color 0.3s ease !important;
+  z-index: 10 !important;
+}
+
+div#productModal.product-modal .close-modal:hover {
+  color: #333 !important;
+}
+
+div#productModal.product-modal .modal-actions {
+  /* Bootstrap reset */
+  all: unset !important;
+  /* Our styles */
+  text-align: center !important;
+  margin-top: 30px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid #eee !important;
+  display: block !important;
+}
+
+div#productModal.product-modal .modal-btn {
+  /* Bootstrap reset */
+  all: unset !important;
+  /* Our styles */
+  display: inline-block !important;
+  padding: 15px 30px !important;
+  background-color: #4D4E75 !important;
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 5px !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  transition: background-color 0.3s ease !important;
+  margin: 0 8px !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+}
+
+div#productModal.product-modal .modal-btn:hover {
+  background-color: #3e9172 !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+  div#productModal.product-modal .modal-content {
+    flex-direction: column !important;
+    max-width: 95% !important;
+    padding: 20px !important;
+    gap: 20px !important;
+  }
+
+  div#productModal.product-modal .modal-image-container {
+    flex: none !important;
+    align-self: center !important;
+  }
+
+  div#productModal.product-modal .modal-info-container {
+    min-height: auto !important;
+  }
+
+  div#productModal.product-modal .modal-info {
+    text-align: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  div#productModal.product-modal .modal-info h3 {
+    font-size: 22px !important;
+    text-align: center !important;
+  }
+
+  div#productModal.product-modal .modal-info p {
+    font-size: 14px !important;
+    text-align: center !important;
+  }
+
+  div#productModal.product-modal .modal-btn {
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    margin: 5px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  div#productModal.product-modal .modal-content {
+    max-width: 98% !important;
+    padding: 15px !important;
+    gap: 15px !important;
+  }
+
+  div#productModal.product-modal .modal-image {
+    max-width: 250px !important;
+    max-height: 250px !important;
+  }
+
+  div#productModal.product-modal .modal-info h3 {
+    font-size: 20px !important;
+  }
+
+  div#productModal.product-modal .modal-info p {
+    font-size: 13px !important;
+  }
+
+  div#productModal.product-modal .modal-btn {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+    margin: 3px !important;
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+
+  .product-modal .close-modal {
+    font-size: 25px !important;
+  }
+}

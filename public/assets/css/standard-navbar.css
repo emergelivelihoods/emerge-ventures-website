@@ -1,0 +1,356 @@
+/* Standard Bootstrap Navbar Styles */
+
+/* Reset body padding for fixed navbar */
+body {
+  padding-top: 80px !important;
+}
+
+/* Navbar base styles */
+.navbar {
+  padding: 0.75rem 0;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Brand/Logo styles */
+.navbar-brand {
+  padding: 0;
+  margin-right: 2rem;
+}
+
+.navbar-brand img {
+  height: 45px;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+/* Navigation links */
+.navbar-nav {
+  align-items: center;
+}
+
+.navbar-nav .nav-link {
+  color: #333 !important;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0.75rem 1rem !important;
+  margin: 0 0.25rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #4C808A !important;
+  background-color: rgba(62, 145, 114, 0.1);
+}
+
+.navbar-nav .nav-link.active {
+  color: #4C808A !important;
+  font-weight: 600;
+}
+
+/* Dropdown styles */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  display: none;
+}
+
+/* Show dropdown on click */
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  display: block;
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.5rem;
+  font-size: 14px;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(62, 145, 114, 0.1);
+  color: #4C808A;
+  padding-left: 2rem;
+}
+
+.dropdown-item.active {
+  color: #4C808A !important;
+  font-weight: 600;
+  background-color: rgba(76, 128, 138, 0.1);
+}
+
+/* Mobile toggle button */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  background-color: rgba(62, 145, 114, 0.1);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* Custom hamburger animation */
+.hamburger-lines {
+  width: 24px;
+  height: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-lines .line {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Hamburger to X animation */
+.navbar-toggler[aria-expanded="true"] .line1 {
+  transform: rotate(45deg) translate(6px, 6px);
+  background-color: #4C808A;
+}
+
+.navbar-toggler[aria-expanded="true"] .line2 {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.navbar-toggler[aria-expanded="true"] .line3 {
+  transform: rotate(-45deg) translate(6px, -6px);
+  background-color: #3e9172;
+}
+
+/* Hover effect for hamburger */
+.navbar-toggler:hover .line {
+  background-color: #4C808A;
+}
+
+/* Responsive styles */
+@media (max-width: 991.98px) {
+  body {
+    padding-top: 70px !important;
+  }
+
+  .navbar {
+    padding: 0.5rem 0;
+  }
+
+  .navbar-brand img {
+    height: 40px;
+  }
+
+  .navbar-collapse {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.75rem 0 !important;
+    margin: 0.25rem 0;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .navbar-nav .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-menu {
+    position: static !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: rgba(62, 145, 114, 0.05) !important;
+    margin: 0 !important;
+    padding: 0.5rem 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    display: none !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+  }
+
+  .dropdown-menu.show {
+    display: block !important;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+  }
+
+  .dropdown-item:hover {
+    padding-left: 1.5rem;
+  }
+
+  .dropdown-item.active {
+    color: #4C808A !important;
+    font-weight: 600;
+    background-color: rgba(76, 128, 138, 0.1);
+  }
+}
+
+@media (max-width: 767.98px) {
+  body {
+    padding-top: 65px !important;
+  }
+
+  .navbar-brand img {
+    height: 35px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  body {
+    padding-top: 60px !important;
+  }
+
+  .navbar-brand img {
+    height: 32px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 15px;
+    padding: 0.5rem 0 !important;
+  }
+  
+  .navbar {
+    padding: 0.4rem 0;
+  }
+  
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  body {
+    padding-top: 55px !important;
+  }
+
+  .navbar-brand img {
+    height: 28px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 14px;
+  }
+  
+  .dropdown-item {
+    font-size: 13px;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  body {
+    padding-top: 50px !important;
+  }
+
+  .navbar-brand img {
+    height: 26px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 13px;
+  }
+  
+  .hamburger-lines {
+    width: 20px;
+    height: 15px;
+  }
+  
+  .hamburger-lines .line {
+    height: 1.5px;
+  }
+}
+
+/* Smooth scrolling offset for fixed navbar */
+html {
+  scroll-padding-top: 80px;
+}
+
+/* Hide old navbar elements */
+.ms-header,
+.ms-header-bottom,
+.ms-main-menu,
+.ms-mobile-menu,
+.ms-mobile-menu-overlay,
+.ms-side-cat-overlay {
+  display: none !important;
+}
+
+/* Ensure content doesn't overlap */
+.ms-hero {
+  margin-top: 0;
+}
+
+/* Additional utility classes */
+.navbar-brand:hover img {
+  transform: scale(1.05);
+}
+
+/* Active state for dropdown parent */
+.nav-item.dropdown:hover .nav-link {
+  color: #4C808A !important;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Fix z-index issues */
+.navbar {
+  z-index: 1030;
+}
+
+/* Custom brand colors */
+:root {
+  --primary-color: #4C808A;
+  --primary-hover: rgba(62, 145, 114, 0.1);
+  --text-dark: #333;
+  --text-muted: #555;
+  --border-light: rgba(0, 0, 0, 0.05);
+}

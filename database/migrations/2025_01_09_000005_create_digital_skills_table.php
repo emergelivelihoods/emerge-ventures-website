@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('digital_skills', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->text('description');
+            $table->text('short_description')->nullable();
+            $table->string('image')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->integer('duration_hours')->nullable();
+            $table->enum('level', ['beginner', 'intermediate', 'advanced']);
+            $table->json('prerequisites')->nullable();
+            $table->json('learning_outcomes')->nullable();
+            $table->json('features')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->boolean('featured')->default(false);
+            $table->integer('max_participants')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('digital_skills');
+    }
+};
