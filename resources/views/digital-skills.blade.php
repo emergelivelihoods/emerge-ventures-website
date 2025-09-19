@@ -199,7 +199,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $skill->title }}</h5>
                             <p class="card-text">{{ $skill->description }}</p>
-                            @if($skill->learning_outcomes)
+                            @if(is_array($skill->learning_outcomes))
                                 <ul class="list-unstyled">
                                     @foreach(array_slice($skill->learning_outcomes, 0, 3) as $outcome)
                                         <li><i class="fas fa-check text-success me-2"></i> {{ $outcome }}</li>

@@ -67,13 +67,16 @@
                 <h3 class="text-xl font-semibold mb-4">Settings</h3>
 
                  <div class="mb-4">
-                    <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                    <select id="role" name="role" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('role') border-red-500 @enderror">
-                        <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
-                        <option value="manager" {{ old('role') == 'manager' ? 'selected' : '' }}>Manager</option>
-                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                    </select>
-                     @error('role') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
+                    <div class="space-y-2">
+                        @foreach(['user', 'manager', 'admin'] as $role)
+                        <div class="flex items-center">
+                            <input id="role_{{ $role }}" name="roles[]" type="checkbox" value="{{ $role }}" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                            <label for="role_{{ $role }}" class="ml-3 block text-sm font-medium text-gray-700">{{ ucfirst($role) }}</label>
+                        </div>
+                        @endforeach
+                    </div>
+                     @error('roles') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="flex items-center justify-between">

@@ -44,6 +44,13 @@
                         <p class="text-xs text-gray-500 mt-1">Leave empty for variable pricing.</p>
                         @error('price') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
+                    <div>
+                        <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label>
+                        <select id="category_id" name="category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('category_id') border-red-500 @enderror">
+                            <option value="">Select Category</option>
+                        </select>
+                        @error('category_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    </div>
                      <div>
                         <label for="icon" class="block text-sm font-medium text-gray-700">FontAwesome Icon Class</label>
                         <input type="text" id="icon" name="icon" value="{{ old('icon', $service->icon) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('icon') border-red-500 @enderror">
