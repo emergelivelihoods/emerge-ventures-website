@@ -44,7 +44,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('services', App\Http\Controllers\Admin\ServiceController::class);
     
     // Team Management
-    Route::resource('team-members', App\Http\Controllers\Admin\TeamMemberController::class);
+    Route::resource('team', App\Http\Controllers\Admin\TeamController::class)->names('team');
     
     // Workspace Bookings Management
     Route::get('workspace-bookings', [App\Http\Controllers\Admin\WorkspaceBookingController::class, 'index'])->name('workspace-bookings.index');
