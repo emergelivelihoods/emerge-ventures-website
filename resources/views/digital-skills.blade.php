@@ -192,113 +192,28 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                @foreach($digitalSkills as $skill)
+                <div class="col-md-4 @if(!$loop->first && $loop->iteration > 3) mt-4 @endif">
                     <div class="program-card">
-                        <img src="assets/img/digital-skills/IMG-11.jpg" class="card-img-top"
-                            alt="Basic Digital Literacy">
+                        <img src="{{ $skill->image }}" class="card-img-top" alt="{{ $skill->title }}">
                         <div class="card-body">
-                            <h5 class="card-title">Basic Digital Literacy</h5>
-                            <p class="card-text">Learn essential computer and internet skills to navigate the digital
-                                world with confidence.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i> Computer fundamentals</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Internet basics</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Email & communication</li>
-                            </ul>
+                            <h5 class="card-title">{{ $skill->title }}</h5>
+                            <p class="card-text">{{ $skill->short_description }}</p>
+                            @if(is_array($skill->learning_outcomes) && count($skill->learning_outcomes) > 0)
+                                <ul class="list-unstyled">
+                                    @foreach(array_slice($skill->learning_outcomes, 0, 3) as $outcome)
+                                        <li><i class="fas fa-check text-success me-2"></i> {{ $outcome }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p class="text-muted">No learning outcomes specified.</p>
+                            @endif
                             <a href="#" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                                data-bs-target="#programDetailsModal" data-program-id="basic">Learn More</a>
+                                data-bs-target="#programDetailsModal" data-program-id="{{ $skill->slug }}">Learn More</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="program-card">
-                        <img src="assets/img/digital-skills/IMG-14.jpg" class="card-img-top" alt="Web Development">
-                        <div class="card-body">
-                            <h5 class="card-title">Web Development</h5>
-                            <p class="card-text">Master the skills to build responsive and interactive websites from
-                                scratch.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i> HTML5 & CSS3</li>
-                                <li><i class="fas fa-check text-success me-2"></i> JavaScript & jQuery</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Responsive design</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                                data-bs-target="#programDetailsModal" data-program-id="web">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="program-card">
-                        <img src="assets/img/digital-skills/IMG-18.jpg" class="card-img-top" alt="Digital Marketing">
-                        <div class="card-body">
-                            <h5 class="card-title">Digital Marketing</h5>
-                            <p class="card-text">Learn to create effective digital marketing strategies and campaigns.
-                            </p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i> Social media marketing</li>
-                                <li><i class="fas fa-check text-success me-2"></i> SEO & content marketing</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Email marketing</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                                data-bs-target="#programDetailsModal" data-program-id="marketing">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                    <div class="program-card">
-                        <img src="assets/img/digital-skills/IMG-16.jpg" class="card-img-top" alt="Data Analysis">
-                        <div class="card-body">
-                            <h5 class="card-title">Data Analysis</h5>
-                            <p class="card-text">Unlock the power of data with our comprehensive data analysis training
-                                program.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i> Excel & Google Sheets</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Data visualization</li>
-                                <li><i class="fas fa-check text-success me-2"></i> SQL fundamentals</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                                data-bs-target="#programDetailsModal" data-program-id="data">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                    <div class="program-card">
-                        <img src="assets/img/digital-skills/IMG-19.jpg" class="card-img-top" alt="Graphic Design">
-                        <div class="card-body">
-                            <h5 class="card-title">Graphic Design</h5>
-                            <p class="card-text">Master the art of visual communication and create stunning designs.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i> Adobe Photoshop</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Adobe Illustrator</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Design principles</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                                data-bs-target="#programDetailsModal" data-program-id="graphic">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                    <div class="program-card">
-                        <img src="assets/img/digital-skills/IMG-7.jpg" class="card-img-top" alt="Python Programming">
-                        <div class="card-body">
-                            <h5 class="card-title">Python Programming</h5>
-                            <p class="card-text">Learn one of the most versatile and in-demand programming languages.
-                            </p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i> Python basics</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Data structures</li>
-                                <li><i class="fas fa-check text-success me-2"></i> Real-world projects</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                                data-bs-target="#programDetailsModal" data-program-id="python">Learn More</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="text-center mt-5">
                 <a href="#" class="btn btn-primary btn-lg rounded-pill px-5"
@@ -373,6 +288,10 @@
                 <div class="modal-body">
                     <!-- Content will be dynamically loaded -->
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-target="#applyModal" data-bs-toggle="modal" data-bs-dismiss="modal">Apply Now</button>
+                </div>
             </div>
         </div>
     </div>
@@ -403,12 +322,9 @@
                             <label for="program" class="form-label">Program of Interest</label>
                             <select class="form-select" id="program" name="program" required>
                                 <option value="" selected disabled>Select a program</option>
-                                <option value="basic">Basic Digital Literacy</option>
-                                <option value="web">Web Development</option>
-                                <option value="marketing">Digital Marketing</option>
-                                <option value="graphic">Graphic Design</option>
-                                <option value="python">Python Programming</option>
-                                <option value="data">Data Analysis</option>
+                                @foreach($digitalSkills as $skill)
+                                    <option value="{{ $skill->slug }}">{{ $skill->title }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
@@ -423,5 +339,66 @@
             </div>
         </div>
     </div>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var programDetailsModal = document.getElementById('programDetailsModal');
+    programDetailsModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var slug = button.getAttribute('data-program-id');
+        var modalTitle = programDetailsModal.querySelector('.modal-title');
+        var modalBody = programDetailsModal.querySelector('.modal-body');
+
+        // Show a loading state
+        modalTitle.textContent = 'Loading...';
+        modalBody.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+
+        // Fetch the program details
+        fetch('/api/digital-skills/' + slug)
+            .then(response => response.json())
+            .then(data => {
+                modalTitle.textContent = data.title;
+
+                let featuresHtml = data.features && data.features.length > 0
+                    ? '<h5>Key Features</h5><ul>' + data.features.map(item => `<li>${item}</li>`).join('') + '</ul>'
+                    : '';
+
+                let prerequisitesHtml = data.prerequisites && data.prerequisites.length > 0
+                    ? '<h5>Prerequisites</h5><ul>' + data.prerequisites.map(item => `<li>${item}</li>`).join('') + '</ul>'
+                    : '';
+
+                let outcomesHtml = data.learning_outcomes && data.learning_outcomes.length > 0
+                    ? '<h5>Learning Outcomes</h5><ul>' + data.learning_outcomes.map(item => `<li>${item}</li>`).join('') + '</ul>'
+                    : '';
+
+                modalBody.innerHTML = `
+                    <img src="${data.image}" alt="${data.title}" class="img-fluid rounded mb-3">
+                    <p class="lead">${data.short_description}</p>
+                    <p>${data.description}</p>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">${prerequisitesHtml}</div>
+                        <div class="col-md-6">${outcomesHtml}</div>
+                    </div>
+                    <hr>
+                    ${featuresHtml}
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span><strong>Level:</strong> ${data.level}</span>
+                        <span><strong>Duration:</strong> ${data.duration_hours} hours</span>
+                        <span><strong>Price:</strong> MWK ${Number(data.price).toLocaleString()}</span>
+                    </div>
+                `;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                modalTitle.textContent = 'Error';
+                modalBody.innerHTML = '<p>Could not load program details. Please try again later.</p>';
+            });
+    });
+});
+</script>
+@endpush
 </body>
 @endsection
