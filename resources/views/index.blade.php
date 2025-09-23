@@ -242,7 +242,7 @@
       <img alt="Product 3" data-src="assets/img/somo/3.png" class="lazy responsive-img">
       <img alt="Product 5" data-src="assets/img/somo/2.png" class="lazy responsive-img">
     </div>
-    <a class="shop" href="shop.html">Shop at Emerge Shop</a>
+    <a class="shop" href="{{ url('/shop') }}">Shop at Emerge Shop</a>
     <div class="lower">
       <img alt="Product 6" data-src="assets/img/somo/11.png" class="lazy responsive-img">
       <img alt="Product 7" data-src="assets/img/somo/7.png" class="lazy responsive-img">
