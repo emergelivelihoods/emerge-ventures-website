@@ -236,6 +236,7 @@ class ShopController extends Controller
             }
 
             if (in_array($order->payment_method, ['mobile', 'bank'])) {
+                $baseUrl = $request->getSchemeAndHttpHost();
                 $paymentData = [
                     'amount' => $order->total_amount,
                     'currency' => 'MWK',
@@ -245,7 +246,7 @@ class ShopController extends Controller
                     'tx_ref' => $order->order_number,
                 ];
 
-                $paymentResponse = $paychanguService->initiatePayment($paymentData);
+                $paymentResponse = $paychanguService->initiatePayment($paymentData, $baseUrl);
 
                 if (isset($paymentResponse['status']) && $paymentResponse['status'] === 'success') {
                     return response()->json([

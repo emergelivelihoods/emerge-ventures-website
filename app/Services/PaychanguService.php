@@ -16,7 +16,7 @@ class PaychanguService
         $this->baseUrl = 'https://api.paychangu.com';
     }
 
-    public function initiatePayment(array $data)
+    public function initiatePayment(array $data, string $baseUrl)
     {
         $payload = [
             'amount' => $data['amount'],
@@ -24,8 +24,8 @@ class PaychanguService
             'email' => $data['email'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'callback_url' => route('payment.callback'),
-            'return_url' => route('payment.return'),
+            'callback_url' => $baseUrl . route('payment.callback', [], false),
+            'return_url' => $baseUrl . route('payment.return', [], false),
             'tx_ref' => $data['tx_ref'],
             'customization' => [
                 'title' => 'Emerge Ventures Store Purchase',
