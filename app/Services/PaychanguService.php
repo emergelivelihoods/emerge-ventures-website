@@ -33,7 +33,8 @@ class PaychanguService
             ],
         ];
 
-        $response = Http::withoutVerifying()
+        $response = Http::timeout(15)
+            ->withoutVerifying()
             ->withToken($this->secretKey)
             ->acceptJson()
             ->post($this->baseUrl . '/payment', $payload);
@@ -43,7 +44,8 @@ class PaychanguService
 
     public function verifyPayment($txRef)
     {
-        $response = Http::withoutVerifying()
+        $response = Http::timeout(15)
+            ->withoutVerifying()
             ->withToken($this->secretKey)
             ->acceptJson()
             ->get($this->baseUrl . '/verify-payment/' . $txRef);
