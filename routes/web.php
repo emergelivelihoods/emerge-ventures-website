@@ -105,6 +105,11 @@ Route::get('/api/products', [App\Http\Controllers\ShopController::class, 'getPro
 Route::get('/api/products/{product}', [App\Http\Controllers\ShopController::class, 'show'])->name('api.products.show');
 Route::post('/api/orders', [App\Http\Controllers\ShopController::class, 'placeOrder'])->name('api.orders.store');
 
+// Payment Routes
+Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'callback'])->name('payment.callback');
+Route::get('/payment/return', [App\Http\Controllers\PaymentController::class, 'return'])->name('payment.return');
+
+
 // Test route to verify data
 Route::get('/test-shop-data', function() {
     $products = App\Models\Product::with('category')->where('status', 'active')->get();

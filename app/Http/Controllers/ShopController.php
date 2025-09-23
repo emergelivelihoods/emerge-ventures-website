@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Services\PaychanguService;
 
 class ShopController extends Controller
 {
@@ -121,7 +122,7 @@ class ShopController extends Controller
         ]);
     }
 
-    public function placeOrder(Request $request)
+    public function placeOrder(Request $request, PaychanguService $paychanguService)
     {
         $validated = $request->validate([
             'customer.firstName' => 'required|string|max:100',
@@ -140,7 +141,7 @@ class ShopController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
         ]);
 
-        return DB::transaction(function () use ($request) {
+        return DB::transaction(function () use ($request, $paychanguService) {
             $items = collect($request->input('items', []));
 
             // Validate stock levels before creating the order
@@ -231,6 +232,40 @@ class ShopController extends Controller
                         $product->in_stock = false;
                         $product->save();
                     }
+                }
+            }
+
+            if (in_array($order->payment_method, ['mobile', 'bank'])) {
+                $paymentData = [
+                    'amount' => $order->total_amount,
+                    'currency' => 'MWK',
+                    'email' => $order->customer_email,
+                    'first_name' => $request->input('customer.firstName'),
+                    'last_name' => $request->input('customer.lastName'),
+                    'tx_ref' => $order->order_number,
+                ];
+
+                $paymentResponse = $paychanguService->initiatePayment($paymentData);
+
+                if (isset($paymentResponse['status']) && $paymentResponse['status'] === 'success') {
+                    return response()->json([
+                        'message' => 'Order placed, redirecting to payment.',
+                        'checkout_url' => $paymentResponse['data']['checkout_url'],
+                    ], 201);
+                } else {
+                    // Payment initiation failed, revert stock and fail order
+                    $order->update(['status' => 'failed', 'payment_status' => 'failed', 'failure_reason' => 'Payment gateway error']);
+                    // Revert stock changes
+                    foreach ($items as $item) {
+                        $product = Product::find($item['id']);
+                        if ($product && $product->manage_stock) {
+                            $product->increment('stock_quantity', $item['quantity']);
+                        }
+                    }
+                    return response()->json([
+                        'message' => 'Failed to initiate payment.',
+                        'error' => $paymentResponse['message'] ?? 'Unknown payment gateway error.'
+                    ], 500);
                 }
             }
 
