@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             DigitalSkillSeeder::class,
             ServiceSeeder::class,
-            TeamMemberSeeder::class,
+            WorkspaceSeeder::class,
         ]);
     }
 }
