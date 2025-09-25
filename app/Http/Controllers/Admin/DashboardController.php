@@ -7,7 +7,6 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Entrepreneur;
 use App\Models\DigitalSkill;
-use App\Models\WorkspaceBooking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,13 +38,11 @@ class DashboardController extends Controller
         $totalEntrepreneurs = Entrepreneur::count();
         $pendingEntrepreneurs = Entrepreneur::where('status', 'pending')->count();
         $totalDigitalSkills = DigitalSkill::count();
-        $totalWorkspaceBookings = WorkspaceBooking::count();
         $totalUsers = User::count();
         
         // Recent Activities
         $recentOrders = Order::with('user')->latest()->take(5)->get();
         $recentEntrepreneurs = Entrepreneur::latest()->take(5)->get();
-        $recentBookings = WorkspaceBooking::latest()->take(5)->get();
         
         // Charts Data
         $salesChart = $this->getSalesChartData();
@@ -63,11 +60,9 @@ class DashboardController extends Controller
             'totalEntrepreneurs',
             'pendingEntrepreneurs',
             'totalDigitalSkills',
-            'totalWorkspaceBookings',
             'totalUsers',
             'recentOrders',
             'recentEntrepreneurs',
-            'recentBookings',
             'salesChart',
             'ordersChart',
             'topProducts'

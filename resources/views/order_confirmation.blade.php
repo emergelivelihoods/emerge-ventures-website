@@ -44,7 +44,7 @@
 
                     <div class="action-buttons">
                         <a href="{{ route('shop.index') }}" class="btn btn-primary me-3">Continue Shopping</a>
-                        <a href="{{ route('dashboard') }}" class="btn btn-outline-primary">View My Dashboard</a>
+                        <a href="/" class="btn btn-outline-primary">Back to Home</a>
                     </div>
                 </div>
             </div>
