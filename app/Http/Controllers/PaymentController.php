@@ -32,7 +32,7 @@ class PaymentController extends Controller
 
                 // Queue confirmation emails
                 Mail::to($order->customer_email)->queue(new OrderConfirmation($order));
-                // Mail::to(config('mail.from.address'))->queue(new AdminOrderNotification($order));
+                Mail::to(config('mail.from.address'))->queue(new AdminOrderNotification($order));
 
                 return redirect()->route('order.confirmation', ['order' => $order->order_number]);
             }
