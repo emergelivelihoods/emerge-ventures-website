@@ -50,8 +50,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Services Management
     Route::resource('services', App\Http\Controllers\Admin\ServiceController::class);
     
-    // Team Management
-    Route::resource('team-members', App\Http\Controllers\Admin\TeamMemberController::class);
+    // // Team Management
+    // Route::resource('team-members', App\Http\Controllers\Admin\TeamMemberController::class);
     
     // Workspace Bookings Management
     Route::get('workspace-bookings', [App\Http\Controllers\Admin\WorkspaceBookingController::class, 'index'])->name('workspace-bookings.index');
@@ -73,17 +73,28 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+// Include test routes (remove in production)
+if (app()->environment(['local', 'testing'])) {
+    require __DIR__.'/test.php';
+}
+
+// Route::get('/checkout', function () {
+//     return view('checkout');
+// });
 Route::get('/co-workspace', function () {
     return view('co-workspace');
 });
 Route::get('/coming-soon', function () {
     return view('coming-soon');
 });
-Route::get('/contact', function () {
-    return view('contact');
+// Contact Routes
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+
+// Newsletter Routes
+Route::post('/newsletter/subscribe', [App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::get('/shop', function () {
+    return view('shop');
 });
 Route::get('/digital-skills', [App\Http\Controllers\DigitalSkillController::class, 'index'])->name('digital-skills.index');
 Route::get('/entrepreneur-application', function () {
@@ -92,25 +103,34 @@ Route::get('/entrepreneur-application', function () {
 Route::get('/entrepreneurs', [App\Http\Controllers\EntrepreneurController::class, 'index'])->name('entrepreneurs.index');
 Route::get('/entrepreneurs/{entrepreneur}', [App\Http\Controllers\EntrepreneurController::class, 'show'])->name('entrepreneurs.show');
 Route::get('/full-profile/{entrepreneur?}', [App\Http\Controllers\EntrepreneurController::class, 'show'])->name('full-profile'); // Legacy route
-Route::get('/other-services', [App\Http\Controllers\ServiceController::class, 'index'])->name('services.index');
+// Services
+Route::get('/services', [App\Http\Controllers\ServiceController::class, 'index'])->name('services.index');
+Route::get('/services/{service:slug}', [App\Http\Controllers\ServiceController::class, 'show'])->name('services.show');
+Route::get('/other-services', [App\Http\Controllers\ServiceController::class, 'index'])->name('other-services');
 Route::get('/our-team', [App\Http\Controllers\TeamController::class, 'index'])->name('team.index');
 Route::get('/welcome', function () {
     return view('welcome');
 });
-Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
-Route::get('/api/products', [App\Http\Controllers\ShopController::class, 'getProducts'])->name('api.products');
-Route::get('/api/products/{product}', [App\Http\Controllers\ShopController::class, 'show'])->name('api.products.show');
-Route::post('/api/orders', [App\Http\Controllers\ShopController::class, 'placeOrder'])->name('api.orders.store');
+// Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
+// Route::get('/api/products', [App\Http\Controllers\ShopController::class, 'getProducts'])->name('api.products');
+// Route::get('/api/products/{product}', [App\Http\Controllers\ShopController::class, 'show'])->name('api.products.show');
+// Route::post('/api/orders', [App\Http\Controllers\ShopController::class, 'placeOrder'])->name('api.orders.store');
 
-// Test route to verify data
-Route::get('/test-shop-data', function() {
-    $products = App\Models\Product::with('category')->where('status', 'active')->get();
-    $categories = App\Models\Category::where('is_active', true)->get();
+// // Payment Routes
+// Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'callback'])->name('payment.callback');
+// Route::get('/payment/return', [App\Http\Controllers\PaymentController::class, 'return'])->name('payment.return');
+// Route::get('/order/{order:order_number}/confirmation', [App\Http\Controllers\ShopController::class, 'showConfirmation'])->name('order.confirmation');
+
+
+// // Test route to verify data
+// Route::get('/test-shop-data', function() {
+//     $products = App\Models\Product::with('category')->where('status', 'active')->get();
+//     $categories = App\Models\Category::where('is_active', true)->get();
     
-    return response()->json([
-        'products_count' => $products->count(),
-        'categories_count' => $categories->count(),
-        'first_product' => $products->first(),
-        'categories' => $categories->pluck('name', 'slug')
-    ]);
-});
+//     return response()->json([
+//         'products_count' => $products->count(),
+//         'categories_count' => $categories->count(),
+//         'first_product' => $products->first(),
+//         'categories' => $categories->pluck('name', 'slug')
+//     ]);
+// });
