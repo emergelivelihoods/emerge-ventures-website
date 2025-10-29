@@ -73,6 +73,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// Include test routes (remove in production)
+if (app()->environment(['local', 'testing'])) {
+    require __DIR__.'/test.php';
+}
+
 // Route::get('/checkout', function () {
 //     return view('checkout');
 // });
@@ -82,9 +87,12 @@ Route::get('/co-workspace', function () {
 Route::get('/coming-soon', function () {
     return view('coming-soon');
 });
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Contact Routes
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+
+// Newsletter Routes
+Route::post('/newsletter/subscribe', [App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/shop', function () {
     return view('shop');
 });
