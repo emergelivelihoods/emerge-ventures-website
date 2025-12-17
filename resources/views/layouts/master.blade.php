@@ -12,11 +12,10 @@
     content="Discover comprehensive services offered by Emerge Ventures - Digital Skills Training, Entrepreneurship Support, Co-Working Space and Business Development Services">
   <meta name="author" content="Emerge Ventures">
 
-  <!-- site Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <!-- site Favicon - Dynamic based on theme -->
+  <link rel="icon" id="favicon-light" href="{{ asset('Vicon.png') }}" media="(prefers-color-scheme: light)">
+  <link rel="icon" id="favicon-dark" href="{{ asset('Vicon-white.png') }}" media="(prefers-color-scheme: dark)">
+  <link rel="icon" id="favicon-default" href="{{ asset('Vicon.png') }}">
 
   <!-- css Icon Font -->
   <link rel="stylesheet" href="{{ asset('assets/css/vendor/msicons.min.css') }}">
@@ -246,6 +245,28 @@
   <script src="{{ asset('assets/programs.js') }}"></script>
 
   @stack('scripts')
+
+  <!-- Dynamic Favicon Script -->
+  <script>
+    (function() {
+      function updateFavicon() {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const favicon = document.querySelector('#favicon-default');
+        
+        if (favicon) {
+          favicon.href = isDarkMode ? '{{ asset("Vicon-white.png") }}' : '{{ asset("Vicon.png") }}';
+        }
+      }
+
+      // Update favicon on page load
+      updateFavicon();
+
+      // Listen for theme changes
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+      }
+    })();
+  </script>
 </body>
 
 </html>
